@@ -1,0 +1,119 @@
+
+
+.container-principal {
+  padding: 24px;
+  background-color: #f5f5f5;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cabecalho-pagina {
+  margin-bottom: 24px;
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.barra-filtros {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .filtro-busca {
+    flex-grow: 1;
+  }
+
+  .filtro-status {
+    width: 200px;
+  }
+
+  .botao-novo-pagamento {
+    padding: 0 16px;
+    height: 48px;
+    font-weight: 500;
+  }
+}
+
+.tabela-container {
+  overflow: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.tabela-pagamentos {
+  width: 100%;
+
+  .mat-header-cell {
+    font-weight: 500;
+    font-size: 14px;
+    color: #616161;
+    background-color: #fafafa;
+  }
+
+  .mat-cell {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .mat-row {
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .status-pagamento {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+
+    &.sucesso {
+      background-color: #B7EFC7;
+      color: #585858;
+    }
+    &.pendente {
+      background-color: #EEEEEE;
+      color: #969696;
+    }
+    &.falha {
+      background-color: #FADCDE;
+      color: #585858;
+    }
+  }
+
+  .botao-acao {
+    min-width: 90px;
+    margin-right: 8px;
+    font-size: 13px;
+
+    &.botao-inativar {
+      background-color: #005FAF;
+      color: #EEEEEE;
+
+
+    }
+        &.botao-inativar-desabled {
+      background-color: #EEEEEE;
+      color: #969696;
+      }
+  }
+}
+
+.mat-paginator {
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.rodape-tabela {
+  display: flex;
+  justify-content: flex-start;
+}
