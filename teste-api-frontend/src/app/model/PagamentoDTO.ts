@@ -2,7 +2,7 @@ import { MetodoPagamento } from "./MetodoPagamento";
 import { Status } from "./Status";
 import { StatusPagamento } from "./StatusPagamento";
 
-interface PagamentoDTO {
+export interface PagamentoDTO {
     identificacao: string;
     codigoDebito: string;
     identificacaoPagador: string;
@@ -13,5 +13,4 @@ interface PagamentoDTO {
     dataPagamento: Date ;
     status: Status;
 }
-
 

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PagamentoDTO } from '../model/PagamentoDTO';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +10,10 @@ import { Observable } from 'rxjs';
 export class PagamentoService {
   private apiPagamentoUrl = 'http://localhost:8080/pagamento/listar-pagamentos';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {   }
 
-    ListarPagamentos():Observable<Oa> {
+    ListarPagamentos() :Observable<PagamentoDTO[]> {
+      return this.http.get<PagamentoDTO[]>(this.apiPagamentoUrl);
 
-   }
-  
+     }
 }

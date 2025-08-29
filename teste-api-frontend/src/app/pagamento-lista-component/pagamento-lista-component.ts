@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PagamentoDTO } from '../model/PagamentoDTO';
+import { PagamentoService } from '../service/pagamento-service';
 
 export interface Pagamento {
   identificacao: string;
@@ -30,39 +32,51 @@ export interface Pagamento {
     MatIconModule,
     MatTooltipModule
   ],
+  standalone: true,
   templateUrl: './pagamento-lista-component.html',
   styleUrl: './pagamento-lista-component.scss'
 })
-export class PagamentoListaComponent implements OnInit{
+export class PagamentoListaComponent implements OnInit {
 
-  dadosPagamentos: Pagamento[] = [
-    { identificacao: '077.977.610-00', metodoPagamento: 'PIX', valor: 99.99, status: 'Processado com sucesso', acoes: '' },
-    { identificacao: '485.916.740-65', metodoPagamento: 'Cartão', valor: 88.88, status: 'Pendente de Processamento', acoes: '' },
-    { identificacao: '544.496.890-89', metodoPagamento: 'Boleto', valor: 77.77, status: 'Processado com falha', acoes: '' },
-  ];
+  constructor(private pagamentoService: PagamentoService) {
+
+  }
+
+  pagamentos : PagamentoDTO[] = [];
 
   colunasExibidas: string[] = ['identificacao', 'metodoPagamento', 'valor', 'status', 'acoes'];
 
   tamanhoDaPagina = 10;
   indiceDaPagina = 0;
-  totalDeItens = this.dadosPagamentos.length;
-
-  constructor() { }
+  totalDeItens = 0;
 
   ngOnInit(): void {
+    this.buscarPagamentos()
   }
 
-  mudancaPagina(event: PageEvent) {
-    this.tamanhoDaPagina = event.pageSize;
-    this.indiceDaPagina = event.pageIndex;
+   buscarPagamentos(): void {
+    this.pagamentoService.ListarPagamentos().subscribe({
+      next: (data: PagamentoDTO[]) => {
+        this.pagamentos = data;
+        this.totalDeItens = this.pagamentos.length;
+        console.log('Pagamentos carregados com sucesso:', this.pagamentos);
+      },
+      error: (error) => {
+        console.error('Erro ao buscar pagamentos:', error);
+      },
+    });
   }
+  mudancaPagina(event: PageEvent) {
+      this.tamanhoDaPagina = event.pageSize;
+      this.indiceDaPagina = event.pageIndex;
+    }
 
   processarPagamento(identificacao: string) {
-    console.log('Processando pagamento:', identificacao);
-  }
+      console.log('Processando pagamento:', identificacao);
+    }
 
 
   inativarPagamento(identificacao: string) {
-    console.log('Inativando pagamento:', identificacao);
-}
+      console.log('Inativando pagamento:', identificacao);
+    }
 }

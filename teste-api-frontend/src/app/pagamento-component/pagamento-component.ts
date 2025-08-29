@@ -4,6 +4,7 @@ import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-pagamento-component',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './pagamento-component.html',
   styleUrl: './pagamento-component.scss'
