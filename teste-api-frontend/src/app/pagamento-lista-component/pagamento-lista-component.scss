@@ -15,9 +15,9 @@
 }
 
 .barra-filtros {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
   gap: 16px;
-  align-items: center;
   margin-bottom: 24px;
   padding: 16px;
   border-radius: 4px;
@@ -25,15 +25,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   .filtro-busca {
+    border-radius: 50px ! important;
     flex-grow: 1;
   }
 
-  .filtro-status {
-    width: 200px;
+.mat-mdc-text-field-wrapper .filtro-status {
+    width: 5px;
+    border-radius: 5px;
+
   }
 
   .botao-novo-pagamento {
-    padding: 0 16px;
+    padding: 0 16px; 
     height: 48px;
     font-weight: 500;
   }

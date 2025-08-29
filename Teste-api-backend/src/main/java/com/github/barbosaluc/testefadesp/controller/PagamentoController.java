@@ -61,7 +61,7 @@ public class PagamentoController {
         return ResponseEntity.ok(resultados);
     }
 
-    @GetMapping
+    @GetMapping("listar-pagamentos")
     @Operation(summary = "Listar todos os pagamentos", description = "Este endpoint lista todos os pagamentos existentes no sistema.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Lista de pagamentos retornada com sucesso.")
