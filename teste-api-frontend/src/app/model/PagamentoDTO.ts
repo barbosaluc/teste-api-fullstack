@@ -7,9 +7,9 @@ export interface PagamentoDTO {
     codigoDebito: string;
     identificacaoPagador: string;
     numeroCartao: string;
-    valorPagamento: number; 
+    valorPagamento: number;
     metodoPagamento : MetodoPagamento;
-    statusPagamento : StatusPagamento; 
+    statusPagamento : StatusPagamento;
     dataPagamento: Date ;
     status: Status;
 }

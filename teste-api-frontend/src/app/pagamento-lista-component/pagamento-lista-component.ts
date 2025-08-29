@@ -10,12 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PagamentoDTO } from '../model/PagamentoDTO';
 import { PagamentoService } from '../service/pagamento-service';
-
+import { FormsModule } from '@angular/forms';
 export interface Pagamento {
   identificacao: string;
   metodoPagamento: string;
   valor: number;
-  status: 'Processado com sucesso' | 'Pendente de Processamento' | 'Processado com falha';
+  status: string
   acoes: string;
 }
 
@@ -30,19 +30,21 @@ export interface Pagamento {
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FormsModule 
   ],
   standalone: true,
   templateUrl: './pagamento-lista-component.html',
   styleUrl: './pagamento-lista-component.scss'
 })
 export class PagamentoListaComponent implements OnInit {
+  
 
   constructor(private pagamentoService: PagamentoService) {
 
   }
 
-  pagamentos : PagamentoDTO[] = [];
+  pagamentos: PagamentoDTO[] = [];
 
   colunasExibidas: string[] = ['identificacao', 'metodoPagamento', 'valor', 'status', 'acoes'];
 
@@ -54,29 +56,47 @@ export class PagamentoListaComponent implements OnInit {
     this.buscarPagamentos()
   }
 
-   buscarPagamentos(): void {
-    this.pagamentoService.ListarPagamentos().subscribe({
+  termoBusca: string = '';
+  statusFiltro: string = 'todos';
+
+  buscarPagamentos(): void {
+    const filtros: any = {};
+
+    if (this.termoBusca) {
+      filtros.identificacaoPagador = this.termoBusca;
+    }
+
+    if (this.statusFiltro && this.statusFiltro !== 'todos') {
+      filtros.statusPagamento = this.statusFiltro;
+    }
+
+    this.pagamentoService.FiltrarPagamentos(filtros).subscribe({
       next: (data: PagamentoDTO[]) => {
         this.pagamentos = data;
         this.totalDeItens = this.pagamentos.length;
-        console.log('Pagamentos carregados com sucesso:', this.pagamentos);
+        console.log('Pagamentos filtrados com sucesso:', this.pagamentos);
       },
       error: (error) => {
         console.error('Erro ao buscar pagamentos:', error);
       },
     });
   }
-  mudancaPagina(event: PageEvent) {
-      this.tamanhoDaPagina = event.pageSize;
-      this.indiceDaPagina = event.pageIndex;
-    }
 
-  processarPagamento(identificacao: string) {
-      console.log('Processando pagamento:', identificacao);
-    }
+  chamarFiltro(): void {
+    this.buscarPagamentos();
+  }
+
+mudancaPagina(event: PageEvent) {
+  this.tamanhoDaPagina = event.pageSize;
+  this.indiceDaPagina = event.pageIndex;
+}
+
+processarPagamento(identificacao: string) {
+  console.log('Processando pagamento:', identificacao);
+}
 
 
-  inativarPagamento(identificacao: string) {
-      console.log('Inativando pagamento:', identificacao);
-    }
+inativarPagamento(identificacao: string) {
+  console.log('Inativando pagamento:', identificacao);
+}
 }
