@@ -11,6 +11,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { PagamentoDTO } from '../model/PagamentoDTO';
 import { PagamentoService } from '../service/pagamento-service';
 import { FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Location } from '@angular/common';
+import { PagamentoComponent } from '../pagamento-component/pagamento-component';
 export interface Pagamento {
   identificacao: string;
   metodoPagamento: string;
@@ -31,18 +34,22 @@ export interface Pagamento {
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    FormsModule 
-  ],
+    FormsModule,
+    MatDialogModule
+],
+
   standalone: true,
   templateUrl: './pagamento-lista-component.html',
   styleUrl: './pagamento-lista-component.scss'
 })
 export class PagamentoListaComponent implements OnInit {
-  
 
-  constructor(private pagamentoService: PagamentoService) {
+  constructor(
+    private pagamentoService: PagamentoService,
+    private dialog: MatDialog,
+    private location: Location
+  ) {}
 
-  }
 
   pagamentos: PagamentoDTO[] = [];
 
@@ -95,8 +102,32 @@ processarPagamento(identificacao: string) {
   console.log('Processando pagamento:', identificacao);
 }
 
+ inativarPagamento(id: number) {
+    console.log('Inativando pagamento com identificação:', id);
+    this.pagamentoService.inativarPagamento(id).subscribe({
+      next: () => {
+        console.log('Pagamento inativado com sucesso!');
+        this.buscarPagamentos();
+      },
+      error: (error) => {
+        console.error('Erro ao inativar pagamento:', error);
+        alert('Não foi possível inativar o pagamento.');
+      }
+    });
+  }
+  abrirNovoPagamentoDialog(): void {
+    const dialogRef = this.dialog.open(PagamentoComponent, {
+      width: '600px',
+    });
 
-inativarPagamento(identificacao: string) {
-  console.log('Inativando pagamento:', identificacao);
-}
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.buscarPagamentos();
+      }
+    });
+  }
+
+  voltar(): void {
+    this.location.back();
+  }
 }

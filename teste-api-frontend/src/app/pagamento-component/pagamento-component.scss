@@ -1,0 +1,35 @@
+.dialog-container {
+padding: 16px;
+width: 100%;
+}
+
+.dialog-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 24px;
+
+h2 {
+font-weight: 600;
+}
+}
+
+.dialog-content {
+width: 100%;
+}
+
+.form-row {
+display: flex;
+gap: 16px;
+margin-bottom: 16px;
+}
+
+.form-field {
+width: 100%;
+}
+
+.flex-end {
+display: flex;
+justify-content: flex-end;
+margin-top: 16px;
+}

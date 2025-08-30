@@ -1,0 +1,48 @@
+<div class="dialog-container">
+<div class="dialog-header">
+<h2 mat-dialog-title>Novo Pagamento</h2>
+<button mat-icon-button (click)="fecharDialog()">
+<mat-icon>close</mat-icon>
+</button>
+</div>
+
+<div class="dialog-content">
+<form (ngSubmit)="criarPagamento()">
+<div class="form-row">
+<mat-form-field appearance="outline" class="form-field">
+<mat-label>Identificação</mat-label>
+<input matInput [(ngModel)]="novoPagamento.identificacaoPagador" name="identificacao">
+</mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Método de pagamento</mat-label>
+      <mat-select [(ngModel)]="novoPagamento.metodoPagamento" name="metodoPagamento">
+        <mat-option value="PIX">PIX</mat-option>
+        <mat-option value="Cartão de Crédito">Cartão de Crédito</mat-option>
+        <mat-option value="Boleto">Boleto</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field *ngIf="novoPagamento.metodoPagamento === 'Cartão de Crédito'" appearance="outline" class="w-full">
+      <mat-label>Número do Cartão</mat-label>
+      <input matInput [(ngModel)]="novoPagamento.numeroCartao" name="numeroCartao">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" [(ngModel)]="novoPagamento.valorPagamento" name="valor">
+    </mat-form-field>
+  </div>
+
+  <div class="flex-end">
+    <button mat-raised-button color="primary" type="submit">
+      <mat-icon>save</mat-icon>
+      Salvar Pagamento
+    </button>
+  </div>
+</form>
+
+</div>
+</div>
