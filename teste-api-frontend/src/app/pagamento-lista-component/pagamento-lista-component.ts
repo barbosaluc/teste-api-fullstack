@@ -102,9 +102,9 @@ processarPagamento(identificacao: string) {
   console.log('Processando pagamento:', identificacao);
 }
 
- inativarPagamento(id: number) {
-    console.log('Inativando pagamento com identificação:', id);
-    this.pagamentoService.inativarPagamento(id).subscribe({
+ inativarPagamento(idPagamento: number) {
+    console.log('Inativando pagamento com identificação:', idPagamento);
+    this.pagamentoService.inativarPagamento(idPagamento).subscribe({
       next: () => {
         console.log('Pagamento inativado com sucesso!');
         this.buscarPagamentos();

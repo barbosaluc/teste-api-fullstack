@@ -3,7 +3,7 @@ import { Status } from "./Status";
 import { StatusPagamento } from "./StatusPagamento";
 
 export interface PagamentoDTO {
-    identificacao: string;
+    idPagamento: number;
     codigoDebito: string;
     identificacaoPagador: string;
     numeroCartao: string;

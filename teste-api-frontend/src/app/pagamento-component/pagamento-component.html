@@ -19,13 +19,15 @@
       <mat-select [(ngModel)]="novoPagamento.metodoPagamento" name="metodoPagamento">
         <mat-option value="PIX">PIX</mat-option>
         <mat-option value="Cartão de Crédito">Cartão de Crédito</mat-option>
+        <mat-option value="Cartão de Débito">Cartão de Débito</mat-option>
         <mat-option value="Boleto">Boleto</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <div class="form-row">
-    <mat-form-field *ngIf="novoPagamento.metodoPagamento === 'Cartão de Crédito'" appearance="outline" class="w-full">
+    <mat-form-field *ngIf="novoPagamento.metodoPagamento === 'Cartão de Crédito' || novoPagamento.metodoPagamento === 'Cartão de Débito'"
+     appearance="outline" class="w-full">
       <mat-label>Número do Cartão</mat-label>
       <input matInput [(ngModel)]="novoPagamento.numeroCartao" name="numeroCartao">
     </mat-form-field>
