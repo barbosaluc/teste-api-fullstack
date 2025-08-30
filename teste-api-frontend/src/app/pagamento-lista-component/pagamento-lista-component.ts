@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 import { PagamentoComponent } from '../pagamento-component/pagamento-component';
-
 @Component({
   selector: 'app-pagamento-lista-component',
   imports: [

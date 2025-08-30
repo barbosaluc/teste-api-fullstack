@@ -32,7 +32,7 @@
 
     <ng-container matColumnDef="identificacao">
       <th mat-header-cell *matHeaderCellDef> Identificação </th>
-      <td mat-cell *matCellDef="let pagamentoDTO"> {{ pagamentoDTO.identificacaoPagador }} </td>
+      <td mat-cell  *matCellDef="let pagamentoDTO"> {{ pagamentoDTO.identificacaoPagador }} </td>
     </ng-container>
 
     <ng-container matColumnDef="metodoPagamento">
@@ -50,18 +50,23 @@
       <td mat-cell *matCellDef="let pagamentoDTO">
         <span class="status-pagamento" [ngClass]="{
               'sucesso': pagamentoDTO.statusPagamento === 'PROCESSADO_SUCESSO',
-              'pendente': pagamentoDTO.statusPagamento === 'Pendente de Processamento',
-              'falha': pagamentoDTO.statusPagamento === 'Processado com Falha'
+              'pendente': pagamentoDTO.statusPagamento === 'PENDENTE_PROCESSAMENTO',
+              'falha': pagamentoDTO.statusPagamento === 'PROCESSADO_FALHA'
             }">
+           {{
+            pagamentoDTO.statusPagamento === 'PENDENTE_PROCESSAMENTO' ? 'Pendente de Processamento' :
+            pagamentoDTO.statusPagamento === 'PROCESSADO_SUCESSO' ? 'Processado com Sucesso' :
+            pagamentoDTO.statusPagamento === 'PROCESSADO_FALHA' ? 'Processado com Falha' :
+            pagamentoDTO.statusPagamento
+          }}
         </span>
-        {{ pagamentoDTO.statusPagamento }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef> Ações </th>
-      <td mat-cell *matCellDef="let pagamentoDTO">
-        <button mat-flat-button class="botao-acao"
+      <td mat-cell  *matCellDef="let pagamentoDTO">
+        <button  mat-flat-button class="botao-acao"
           [disabled]="pagamentoDTO.statusPagamento === 'Processado com sucesso' || pagamentoDTO.statusPagamento === 'Processado com falha'"
           (click)="inativarPagamento(pagamentoDTO.idPagamento)"
           [ngClass]="pagamentoDTO.statusPagamento === 'Pendente de Processamento' ? 'botao-inativar' : 'botao-inativar-desabled'">
@@ -69,7 +74,7 @@
         </button>
         <button mat-flat-button color="primary" class="botao-acao"
           [disabled]="pagamentoDTO.statusPagamento !== 'Pendente de Processamento'"
-          (click)="processarPagamento(pagamento.codigoDebito)">
+          (click)="processarPagamento(pagamentoDTO.idPagamento)">
           Processar
         </button>
       </td>
