@@ -1,5 +1,6 @@
 package com.github.barbosaluc.testefadesp.exceptions;
 
+import com.github.barbosaluc.testefadesp.exceptions.pagamentos.MetodoDePagamentoInvalidoException;
 import com.github.barbosaluc.testefadesp.exceptions.pagamentos.PagamentoNaoEncontradoException;
 import com.github.barbosaluc.testefadesp.exceptions.pagamentos.StatusInvalidoException;
 import com.github.barbosaluc.testefadesp.exceptions.pagamentos.StatusPagamentoInvalidoException;
@@ -26,4 +27,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage(), 400), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(MetodoDePagamentoInvalidoException.class)
+    public ResponseEntity<ErrorResponse> handleStatusPagamentoInvalido(MetodoDePagamentoInvalidoException ex) {
+        return new ResponseEntity<>(new ErrorResponse(ex.getMessage(), 400), HttpStatus.BAD_REQUEST);
+    }
 }

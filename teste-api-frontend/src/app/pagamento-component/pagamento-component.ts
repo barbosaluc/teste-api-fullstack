@@ -30,7 +30,7 @@ import { PagamentoService } from '../service/pagamento-service';
 export class PagamentoComponent  {
 
   novoPagamento: any = {
-    identificacaoPagador: '',
+    cpfCnpj: '',
     metodoPagamento: '',
     numeroCartao: '',
     valorPagamento: null,

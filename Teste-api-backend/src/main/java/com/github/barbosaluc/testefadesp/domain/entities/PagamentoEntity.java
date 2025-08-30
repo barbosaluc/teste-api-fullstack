@@ -31,21 +31,21 @@ import lombok.NoArgsConstructor;
 public class PagamentoEntity {
     
     @Id
-    @Column(name = "ID_PAGAMENTO")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPagamento;
+    private Long id;
 
     @NotNull(message = "O código do débito é obrigatório")
-    @Column(name = "CODIGO_DEBITO", nullable = false)
-    private Long codigoDebito;
+    @Column(name = "ID_PAGAMENTO", nullable = false)
+    private Long idPagamento;
 
     @NotBlank(message = "A identificação do pagador é obrigatória" )
     @Pattern(
             regexp = "^\\d{11}|\\d{14}$",
             message = "A identificação do pagador deve conter 11 (CPF) ou 14 (CNPJ) dígitos numéricos"
     )
-    @Column(name = "IDENTIFICACAO_PAGADOR", nullable = false)
-    private String identificacaoPagador;
+    @Column(name = "CPF_CNPJ", nullable = false)
+    private String cpfCnpj;
 
     @NotNull(message = "O método de pagamento é obrigatório")
     @Enumerated(EnumType.STRING)
@@ -64,7 +64,6 @@ public class PagamentoEntity {
     @Column(name = "STATUS_PAGAMENTO", nullable = false)
     private StatusPagamento statusPagamento;
 
-    @NotNull(message = "A data do pagamento não pode ser nula")
     @Column(name = "DATA_PAGAMENTO")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime dataPagamento;

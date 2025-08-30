@@ -44,14 +44,14 @@ public class PagamentoController {
         }
     }
 
-    @GetMapping("/{idPagamento}")
+    @GetMapping("/{id}")
     @Operation(summary = "Buscar pagamento por ID", description = "Este endpoint busca um pagamento pelo seu ID.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pagamento encontrado"),
         @ApiResponse(responseCode = "404", description = "Pagamento não encontrado")
     })
-    public ResponseEntity<PagamentoResponseDTO> buscarPagamentoPorId(@PathVariable Long idPagamento) {
-        PagamentoResponseDTO pagamentoResponseDto = pagamentoService.buscarPagamentoPorId(idPagamento);
+    public ResponseEntity<PagamentoResponseDTO> buscarPagamentoPorId(@PathVariable Long id) {
+        PagamentoResponseDTO pagamentoResponseDto = pagamentoService.buscarPagamentoPorId(id);
         return ResponseEntity.ok(pagamentoResponseDto);
     }
 
@@ -70,14 +70,14 @@ public class PagamentoController {
        return ResponseEntity.ok(pagamentoService.listarPagamentos());
     }
         
-    @PutMapping("/{idPagamento}")
+    @PutMapping("/{id}")
     @Operation(summary = "Atualizar pagamento", description = "Este endpoint atualiza um pagamento existente no sistema com base no ID fornecido.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "204", description = "Pagamento atualizado com sucesso."),
         @ApiResponse(responseCode = "404", description = "Pagamento não encontrado.")
     })
-    public ResponseEntity<PagamentoResponseDTO> atualizarPagamento(@PathVariable Long idPagamento, @Valid @RequestBody PagamentoRequestDTO pagamentoRequestDTO, StatusPagamento statusPagamento) {
-        PagamentoResponseDTO pagamentoResponseDto = pagamentoService.atualizarPagamento(idPagamento, pagamentoRequestDTO, statusPagamento);
+    public ResponseEntity<PagamentoResponseDTO> atualizarPagamento(@PathVariable Long id, @Valid @RequestBody  StatusPagamento statusPagamento) {
+        PagamentoResponseDTO pagamentoResponseDto = pagamentoService.atualizarPagamento(id, statusPagamento);
         if (pagamentoResponseDto != null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(pagamentoResponseDto);
         } else {
@@ -85,10 +85,10 @@ public class PagamentoController {
         }
     }
 
-    @DeleteMapping("/{idPagamento}")
+    @DeleteMapping("/{id}")
     @Operation(summary = "Excluir pagamento logicamente", description = "Este endpoint exclui um pagamento logicamente do sistema com base no ID fornecido.")
-    public ResponseEntity<Void> excluirPagamentoLogicamente (@PathVariable Long idPagamento) {
-        pagamentoService.excluirPagamentoLogicamente(idPagamento);
+    public ResponseEntity<Void> excluirPagamentoLogicamente (@PathVariable Long id) {
+        pagamentoService.excluirPagamentoLogicamente(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
  

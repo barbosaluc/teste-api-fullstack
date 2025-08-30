@@ -5,7 +5,7 @@
 
   <div class="barra-filtros">
     <mat-form-field appearance="outline" class="filtro-busca">
-      <mat-label>Buscar por identificação </mat-label>
+      <mat-label>Buscar por CPF ou CNPJ</mat-label>
       <input matInput [(ngModel)]="termoBusca" (input)="chamarFiltro()">
 
     </mat-form-field>
@@ -32,44 +32,49 @@
 
     <ng-container matColumnDef="identificacao">
       <th mat-header-cell *matHeaderCellDef> Identificação </th>
-      <td mat-cell *matCellDef="let pagamento"> {{ pagamento.identificacaoPagador }} </td>
+      <td mat-cell  *matCellDef="let pagamentoDTO"> {{ pagamentoDTO.cpfCnpj }} </td>
     </ng-container>
 
     <ng-container matColumnDef="metodoPagamento">
       <th mat-header-cell *matHeaderCellDef> Método de pagamento </th>
-      <td mat-cell *matCellDef="let pagamento"> {{ pagamento.metodoPagamento }} </td>
+      <td mat-cell *matCellDef="let pagamentoDTO"> {{ pagamentoDTO.metodoPagamento }} </td>
     </ng-container>
 
     <ng-container matColumnDef="valor">
       <th mat-header-cell *matHeaderCellDef> Valor </th>
-      <td mat-cell *matCellDef="let pagamento"> R$ {{ pagamento.valorPagamento | number:'1.2-2' }} </td>
+      <td mat-cell *matCellDef="let pagamentoDTO"> R$ {{ pagamentoDTO.valorPagamento | number:'1.2-2' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef> Status </th>
-      <td mat-cell *matCellDef="let pagamento">
+      <td mat-cell *matCellDef="let pagamentoDTO">
         <span class="status-pagamento" [ngClass]="{
-              'sucesso': pagamento.statusPagamento === 'Processado com sucesso',
-              'pendente': pagamento.statusPagamento === 'Pendente de Processamento',
-              'falha': pagamento.statusPagamento === 'Processado com Falha'
+              'sucesso': pagamentoDTO.statusPagamento === 'PROCESSADO_SUCESSO',
+              'pendente': pagamentoDTO.statusPagamento === 'PENDENTE_PROCESSAMENTO',
+              'falha': pagamentoDTO.statusPagamento === 'PROCESSADO_FALHA'
             }">
+           {{
+            pagamentoDTO.statusPagamento === 'PENDENTE_PROCESSAMENTO' ? 'Pendente de Processamento' :
+            pagamentoDTO.statusPagamento === 'PROCESSADO_SUCESSO' ? 'Processado com Sucesso' :
+            pagamentoDTO.statusPagamento === 'PROCESSADO_FALHA' ? 'Processado com Falha' :
+            pagamentoDTO.statusPagamento
+          }}
         </span>
-        {{ pagamento.statusPagamento }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef> Ações </th>
-      <td mat-cell *matCellDef="let pagamento">
-        <button mat-flat-button class="botao-acao"
-          [disabled]="pagamento.statusPagamento === 'Processado com sucesso' || pagamento.statusPagamento === 'Processado com falha'"
-          (click)="inativarPagamento(pagamento.idPagamento)"
-          [ngClass]="pagamento.statusPagamento === 'Pendente de Processamento' ? 'botao-inativar' : 'botao-inativar-desabled'">
+      <td mat-cell  *matCellDef="let pagamentoDTO">
+        <button  mat-flat-button class="botao-acao"
+          [disabled]="pagamentoDTO.statusPagamento === 'Processado com sucesso' || pagamentoDTO.statusPagamento === 'Processado com falha'"
+          (click)="inativarPagamento(pagamentoDTO.id)"
+          [ngClass]="pagamentoDTO.statusPagamento === 'Pendente de Processamento' ? 'botao-inativar' : 'botao-inativar-desabled'">
           Inativar
         </button>
         <button mat-flat-button color="primary" class="botao-acao"
-          [disabled]="pagamento.statusPagamento !== 'Pendente de Processamento'"
-          (click)="processarPagamento(pagamento.codigoDebito)">
+          [disabled]="pagamentoDTO.statusPagamento !== 'Pendente de Processamento'"
+          (click)="processarPagamento(pagamentoDTO.id)">
           Processar
         </button>
       </td>
@@ -82,7 +87,7 @@
 
 <div class="rodape-tabela">
   <mat-paginator [length]="totalDeItens" [pageSize]="tamanhoDaPagina" [pageIndex]="indiceDaPagina"
-    [pageSizeOptions]="[5, 10, 25, 100]" (page)="mudancaPagina($event)" aria-label="Selecione a página de pagamentos">
+    [pageSizeOptions]="[5, 10, 15, 20]" (page)="mudancaPagina($event)" aria-label="Selecione a página de pagamentos">
   </mat-paginator>
 </div>
 </div>

@@ -6,9 +6,11 @@ http://localhost:8080/swagger-ui/index.html
 
 # Para rodar o banco de dados h2:
 http://localhost:8080/h2-console
+login: admin
+senha: admin
 
-Markdown
-
+#Observação:
+ Foi criado uma classe para popular o banco de dados H2 com alguns dados iniciais para facilitar os testes, essa classe é a PagamentoDataInitializer.java.
 ---
 ## Tabela de Endpoints: `PagamentoController`
 

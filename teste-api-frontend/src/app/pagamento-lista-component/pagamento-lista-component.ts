@@ -14,14 +14,6 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 import { PagamentoComponent } from '../pagamento-component/pagamento-component';
-export interface Pagamento {
-  identificacao: string;
-  metodoPagamento: string;
-  valor: number;
-  status: string
-  acoes: string;
-}
-
 @Component({
   selector: 'app-pagamento-lista-component',
   imports: [
@@ -70,7 +62,7 @@ export class PagamentoListaComponent implements OnInit {
     const filtros: any = {};
 
     if (this.termoBusca) {
-      filtros.identificacaoPagador = this.termoBusca;
+      filtros.cpfCnpj = this.termoBusca;
     }
 
     if (this.statusFiltro && this.statusFiltro !== 'todos') {
@@ -102,9 +94,9 @@ processarPagamento(identificacao: string) {
   console.log('Processando pagamento:', identificacao);
 }
 
- inativarPagamento(idPagamento: number) {
-    console.log('Inativando pagamento com identificação:', idPagamento);
-    this.pagamentoService.inativarPagamento(idPagamento).subscribe({
+ inativarPagamento(id: number) {
+    console.log('Inativando pagamento com identificação:', id);
+    this.pagamentoService.inativarPagamento(id).subscribe({
       next: () => {
         console.log('Pagamento inativado com sucesso!');
         this.buscarPagamentos();

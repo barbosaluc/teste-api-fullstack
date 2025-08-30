@@ -2,6 +2,7 @@ package com.github.barbosaluc.testefadesp.domain.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.github.barbosaluc.testefadesp.exceptions.pagamentos.MetodoDePagamentoInvalidoException;
 
 public enum MetodoPagamento {
     
@@ -29,7 +30,7 @@ public enum MetodoPagamento {
                 return metodo;
             }
         }
-    throw new IllegalArgumentException("Método de pagamento inválido: " + descricao);
+        throw new MetodoDePagamentoInvalidoException("Método de pagamento inválido: " + descricao);
  }
 
 }

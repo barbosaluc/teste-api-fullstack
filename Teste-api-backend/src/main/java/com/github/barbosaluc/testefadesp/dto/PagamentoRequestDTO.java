@@ -10,10 +10,10 @@ import jakarta.validation.constraints.NotNull;
 public record PagamentoRequestDTO(
 
     @NotNull(message = "O código do débito é obrigatório")
-    Long codigoDebito,
+    Long idPagamento,
 
     @NotBlank(message = "A identificação do pagador é obrigatória")    
-    String identificacaoPagador,
+    String cpfCnpj,
 
     @NotNull(message = "O método de pagamento é obrigatório")
     MetodoPagamento metodoPagamento,

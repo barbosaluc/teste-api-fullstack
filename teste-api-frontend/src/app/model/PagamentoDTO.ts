@@ -3,9 +3,9 @@ import { Status } from "./Status";
 import { StatusPagamento } from "./StatusPagamento";
 
 export interface PagamentoDTO {
-    idPagamento: number;
-    codigoDebito: string;
-    identificacaoPagador: string;
+    id: number;
+    idPagamento: string;
+    cpfCnpj: string;
     numeroCartao: string;
     valorPagamento: number;
     metodoPagamento : MetodoPagamento;

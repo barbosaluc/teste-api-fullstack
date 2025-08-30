@@ -8,9 +8,9 @@ import com.github.barbosaluc.testefadesp.domain.enums.Status;
 import com.github.barbosaluc.testefadesp.domain.enums.StatusPagamento;
 
 public record PagamentoResponseDTO (
+        Long id,
         Long idPagamento,
-        Long codigoDebito,
-        String identificacaoPagador,
+        String cpfCnpj,
         MetodoPagamento metodoPagamento,
         String numeroCartao,
         BigDecimal valorPagamento,
