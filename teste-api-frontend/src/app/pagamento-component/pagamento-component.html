@@ -31,7 +31,7 @@
 
       <div class="form-row">
         <mat-form-field
-          *ngIf="novoPagamento.metodoPagamento === 'Cartao de credito' || novoPagamento.metodoPagamento === 'Cartao de Debito'"
+          *ngIf="novoPagamento.metodoPagamento === 'Cartao de Credito' || novoPagamento.metodoPagamento === 'Cartao de Debito'"
           appearance="outline" class="w-full">
           <mat-label>Número do Cartão</mat-label>
           <input matInput [(ngModel)]="novoPagamento.numeroCartao" name="numeroCartao">

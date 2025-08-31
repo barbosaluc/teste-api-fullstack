@@ -28,7 +28,7 @@
 </div>
 
 <div class="tabela-container">
-  <table mat-table [dataSource]="pagamentos" class="tabela-pagamentos">
+  <table mat-table [dataSource]="pagamentosPaginados" class="tabela-pagamentos">
 
     <ng-container matColumnDef="identificacao">
       <th mat-header-cell *matHeaderCellDef> Identificação </th>
@@ -67,9 +67,9 @@
       <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell  *matCellDef="let pagamentoDTO">
         <button  mat-flat-button class="botao-acao"
-          [disabled]="pagamentoDTO.statusPagamento === 'Processado com sucesso' || pagamentoDTO.statusPagamento === 'Processado com falha'"
+          [disabled]="pagamentoDTO.statusPagamento === 'PROCESSADO_SUCESSO' || pagamentoDTO.statusPagamento === 'PROCESSADO_FALHA'"
           (click)="inativarPagamento(pagamentoDTO.id)"
-          [ngClass]="pagamentoDTO.statusPagamento === 'Pendente de Processamento' ? 'botao-inativar' : 'botao-inativar-desabled'">
+          [ngClass]="pagamentoDTO.statusPagamento === 'PENDENTE_PROCESSAMENTO' ? 'botao-inativar' : 'botao-inativar-desabled'">
           Inativar
         </button>
         <button mat-flat-button color="primary" class="botao-acao"
@@ -86,8 +86,8 @@
 </div>
 
 <div class="rodape-tabela">
-  <mat-paginator [length]="totalDeItens" [pageSize]="tamanhoDaPagina" [pageIndex]="indiceDaPagina"
-    [pageSizeOptions]="[5, 10, 15, 20]" (page)="mudancaPagina($event)" aria-label="Selecione a página de pagamentos">
-  </mat-paginator>
+  <mat-paginator [length]="totalDeItens" [pageSize]="tamanhoDaPagina" [pageIndex]="indiceDaPagina"
+    [pageSizeOptions]="[5, 10, 15, 20]" (page)="mudancaPagina($event)" aria-label="Selecione a página de pagamentos">
+  </mat-paginator>
 </div>
 </div>

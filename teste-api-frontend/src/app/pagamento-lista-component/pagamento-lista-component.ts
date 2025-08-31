@@ -48,6 +48,8 @@ export class PagamentoListaComponent implements OnInit {
 
   pagamentos: PagamentoDTO[] = [];
 
+   pagamentosPaginados: PagamentoDTO[] = [];
+
   colunasExibidas: string[] = ['identificacao', 'metodoPagamento', 'valor', 'status', 'acoes'];
 
   tamanhoDaPagina = 10;
@@ -89,10 +91,17 @@ export class PagamentoListaComponent implements OnInit {
     console.log('Valor do campo de busca:', this.termoBusca);
   }
 
-mudancaPagina(event: PageEvent) {
-  this.tamanhoDaPagina = event.pageSize;
-  this.indiceDaPagina = event.pageIndex;
-}
+  mudancaPagina(event: PageEvent) {
+    this.tamanhoDaPagina = event.pageSize;
+    this.indiceDaPagina = event.pageIndex;
+    this.aplicarPaginacao(); // Chama a função para aplicar a paginação
+  }
+
+  aplicarPaginacao(): void {
+    const inicio = this.indiceDaPagina * this.tamanhoDaPagina;
+    const fim = inicio + this.tamanhoDaPagina;
+    this.pagamentosPaginados = this.pagamentos.slice(inicio, fim);
+  }
 
 processarPagamento(identificacao: string) {
   console.log('Processando pagamento:', identificacao);
@@ -102,7 +111,7 @@ processarPagamento(identificacao: string) {
     console.log('Inativando pagamento com identificação:', id);
     this.pagamentoService.inativarPagamento(id).subscribe({
       next: () => {
-        this.exibirSucesso('Pagamento inativado com sucesso!'); 
+        this.exibirSucesso('Pagamento inativado com sucesso!');
         this.buscarPagamentos();
       },
       error: (error) => {

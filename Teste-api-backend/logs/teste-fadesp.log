@@ -434,3 +434,298 @@ com.github.barbosaluc.testefadesp.exceptions.pagamentos.StatusInvalidoException:
 2025-08-31 10:28:13 - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
 2025-08-31 10:28:13 - HikariPool-1 - Shutdown initiated...
 2025-08-31 10:28:13 - HikariPool-1 - Shutdown completed.
+2025-08-31 15:25:05 - Starting TesteFadespApplication using Java 21.0.8 with PID 10756 (C:\workspace\teste-api-fullstack\teste-api-fullstack\Teste-api-backend\target\classes started by lucas in C:\workspace\teste-api-fullstack\teste-api-fullstack\Teste-api-backend)
+2025-08-31 15:25:05 - No active profile set, falling back to 1 default profile: "default"
+2025-08-31 15:25:05 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-31 15:25:05 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-31 15:25:11 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-31 15:25:11 - Finished Spring Data repository scanning in 130 ms. Found 1 JPA repository interface.
+2025-08-31 15:25:13 - Tomcat initialized with port 8080 (http)
+2025-08-31 15:25:13 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-31 15:25:13 - Starting service [Tomcat]
+2025-08-31 15:25:13 - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-08-31 15:25:13 - Initializing Spring embedded WebApplicationContext
+2025-08-31 15:25:13 - Root WebApplicationContext: initialization completed in 7698 ms
+2025-08-31 15:25:13 - HikariPool-1 - Starting...
+2025-08-31 15:25:14 - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:test user=ADMIN
+2025-08-31 15:25:14 - HikariPool-1 - Start completed.
+2025-08-31 15:25:14 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2025-08-31 15:25:15 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-31 15:25:15 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-08-31 15:25:15 - HHH000026: Second-level cache disabled
+2025-08-31 15:25:16 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-31 15:25:16 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-31 15:25:18 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-31 15:25:18 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-31 15:25:19 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-31 15:25:20 - LiveReload server is running on port 35729
+2025-08-31 15:25:20 - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-31 15:25:20 - Tomcat started on port 8080 (http) with context path '/'
+2025-08-31 15:25:20 - Started TesteFadespApplication in 18.302 seconds (process running for 34.08)
+2025-08-31 15:25:20 - A aplicação iniciada com sucesso!
+2025-08-31 15:25:22 - Executando script DML para inserir 20 registros...
+2025-08-31 15:25:22 - Script DML executado com sucesso! 20 registros adicionados.
+2025-08-31 15:31:12 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-31 15:31:12 - Initializing Servlet 'dispatcherServlet'
+2025-08-31 15:31:12 - Completed initialization in 3 ms
+2025-08-31 15:31:13 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:31:13 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 20 pagamentos com os filtros fornecidos
+2025-08-31 15:31:40 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 2
+2025-08-31 15:31:40 - PagamentoService.excluirPagamentoLogicamente - Pagamento inativado com sucesso. ID: 2
+2025-08-31 15:31:40 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:31:40 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 20 pagamentos com os filtros fornecidos
+2025-08-31 15:31:51 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 3
+2025-08-31 15:31:51 - PagamentoService.excluirPagamentoLogicamente - Erro ao inativar pagamento com ID: 3 Pagamento só pode ser inativado se estiver com o processamento pendente
+com.github.barbosaluc.testefadesp.exceptions.pagamentos.StatusInvalidoException: Pagamento só pode ser inativado se estiver com o processamento pendente
+	at com.github.barbosaluc.testefadesp.services.PagamentoService.excluirPagamentoLogicamente(PagamentoService.java:135)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:716)
+	at com.github.barbosaluc.testefadesp.services.PagamentoService$$SpringCGLIB$$0.excluirPagamentoLogicamente(<generated>)
+	at com.github.barbosaluc.testefadesp.controller.PagamentoController.excluirPagamentoLogicamente(PagamentoController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-08-31 15:31:51 - Resolved [java.lang.RuntimeException: Erro ao inativar pagamento]
+2025-08-31 15:32:31 - PagamentoService.criarPagamento - Iniciando o processamento do pagamento
+2025-08-31 15:32:31 - PagamentoService.criarPagamento - Pagamento criado com sucesso com ID: 235766532865
+2025-08-31 15:32:31 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:32:31 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 21 pagamentos com os filtros fornecidos
+2025-08-31 15:34:51 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:34:51 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 21 pagamentos com os filtros fornecidos
+2025-08-31 15:40:22 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:40:22 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 21 pagamentos com os filtros fornecidos
+2025-08-31 15:40:37 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:40:37 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 21 pagamentos com os filtros fornecidos
+2025-08-31 15:42:08 - PagamentoService.criarPagamento - Iniciando o processamento do pagamento
+2025-08-31 15:42:08 - PagamentoService.criarPagamento - Pagamento criado com sucesso com ID: 1234
+2025-08-31 15:42:55 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 21
+2025-08-31 15:42:55 - PagamentoService.excluirPagamentoLogicamente - Pagamento inativado com sucesso. ID: 21
+2025-08-31 15:42:55 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:42:55 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 22 pagamentos com os filtros fornecidos
+2025-08-31 15:47:26 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:47:26 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 22 pagamentos com os filtros fornecidos
+2025-08-31 15:48:37 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:48:37 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 22 pagamentos com os filtros fornecidos
+2025-08-31 15:49:09 - PagamentoService.criarPagamento - Iniciando o processamento do pagamento
+2025-08-31 15:49:09 - PagamentoService.criarPagamento - Pagamento criado com sucesso com ID: 16265562785623
+2025-08-31 15:49:09 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:49:09 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 23 pagamentos com os filtros fornecidos
+2025-08-31 15:49:45 - PagamentoService.criarPagamento - Iniciando o processamento do pagamento
+2025-08-31 15:49:45 - PagamentoService.criarPagamento - Pagamento criado com sucesso com ID: 1234
+2025-08-31 15:49:45 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:49:45 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 15:52:04 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 21
+2025-08-31 15:52:04 - PagamentoService.excluirPagamentoLogicamente - Pagamento inativado com sucesso. ID: 21
+2025-08-31 15:52:04 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:52:04 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 15:52:06 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 20
+2025-08-31 15:52:06 - PagamentoService.excluirPagamentoLogicamente - Erro ao inativar pagamento com ID: 20 Pagamento só pode ser inativado se estiver com o processamento pendente
+com.github.barbosaluc.testefadesp.exceptions.pagamentos.StatusInvalidoException: Pagamento só pode ser inativado se estiver com o processamento pendente
+	at com.github.barbosaluc.testefadesp.services.PagamentoService.excluirPagamentoLogicamente(PagamentoService.java:135)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:716)
+	at com.github.barbosaluc.testefadesp.services.PagamentoService$$SpringCGLIB$$0.excluirPagamentoLogicamente(<generated>)
+	at com.github.barbosaluc.testefadesp.controller.PagamentoController.excluirPagamentoLogicamente(PagamentoController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-08-31 15:52:06 - Resolved [java.lang.RuntimeException: Erro ao inativar pagamento]
+2025-08-31 15:58:43 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 15:58:43 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 16:01:24 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:01:24 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 16:03:09 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:03:09 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 16:06:05 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:06:05 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 16:06:09 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:06:09 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 16:06:18 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:06:18 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 24 pagamentos com os filtros fornecidos
+2025-08-31 16:06:48 - PagamentoService.criarPagamento - Iniciando o processamento do pagamento
+2025-08-31 16:06:48 - PagamentoService.criarPagamento - Pagamento criado com sucesso com ID: 4144142412
+2025-08-31 16:06:48 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:06:48 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 25 pagamentos com os filtros fornecidos
+2025-08-31 16:06:56 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:06:56 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 25 pagamentos com os filtros fornecidos
+2025-08-31 16:07:05 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 25
+2025-08-31 16:07:05 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 25
+2025-08-31 16:07:05 - PagamentoService.excluirPagamentoLogicamente - Pagamento inativado com sucesso. ID: 25
+2025-08-31 16:07:05 - PagamentoService.excluirPagamentoLogicamente - Pagamento inativado com sucesso. ID: 25
+2025-08-31 16:07:05 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:07:05 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 25 pagamentos com os filtros fornecidos
+2025-08-31 16:07:05 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:07:05 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 25 pagamentos com os filtros fornecidos
+2025-08-31 16:13:23 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:13:23 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 25 pagamentos com os filtros fornecidos
+2025-08-31 16:15:17 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:15:17 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 25 pagamentos com os filtros fornecidos
+2025-08-31 16:21:06 - PagamentoService.criarPagamento - Iniciando o processamento do pagamento
+2025-08-31 16:21:06 - PagamentoService.criarPagamento - Pagamento criado com sucesso com ID: 25238528365
+2025-08-31 16:21:06 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:21:06 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 26 pagamentos com os filtros fornecidos
+2025-08-31 16:21:14 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 4
+2025-08-31 16:21:14 - PagamentoService.excluirPagamentoLogicamente - Pagamento inativado com sucesso. ID: 4
+2025-08-31 16:21:14 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:21:14 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 26 pagamentos com os filtros fornecidos
+2025-08-31 16:21:18 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 5
+2025-08-31 16:21:18 - PagamentoService.excluirPagamentoLogicamente - Erro ao inativar pagamento com ID: 5 Pagamento só pode ser inativado se estiver com o processamento pendente
+com.github.barbosaluc.testefadesp.exceptions.pagamentos.StatusInvalidoException: Pagamento só pode ser inativado se estiver com o processamento pendente
+	at com.github.barbosaluc.testefadesp.services.PagamentoService.excluirPagamentoLogicamente(PagamentoService.java:135)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:716)
+	at com.github.barbosaluc.testefadesp.services.PagamentoService$$SpringCGLIB$$0.excluirPagamentoLogicamente(<generated>)
+	at com.github.barbosaluc.testefadesp.controller.PagamentoController.excluirPagamentoLogicamente(PagamentoController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-08-31 16:21:18 - Resolved [java.lang.RuntimeException: Erro ao inativar pagamento]
+2025-08-31 16:27:43 - PagamentoService.excluirPagamentoLogicamente - Tentando inativar pagamento com ID: 2
+2025-08-31 16:27:43 - PagamentoService.excluirPagamentoLogicamente - Pagamento inativado com sucesso. ID: 2
+2025-08-31 16:27:43 - PagamentoService.buscarPagamentosPorFiltro - Buscando pagamentos com filtros: PagamentoFiltroDTO[idPagamento=null, cnpjCpf=null, statusPagamento=null]
+2025-08-31 16:27:43 - PagamentoService.buscarPagamentosPorFiltro - Encontrados 26 pagamentos com os filtros fornecidos
+2025-08-31 16:29:01 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-31 16:29:02 - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+2025-08-31 16:29:02 - HikariPool-1 - Shutdown initiated...
+2025-08-31 16:29:02 - HikariPool-1 - Shutdown completed.
