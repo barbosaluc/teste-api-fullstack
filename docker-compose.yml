@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  container-teste-fadesp:
+    build: .
+    container_name: container-teste-fadesp
+    ports:
+      - "4200:4200"  # Frontend
+      - "8080:8080"  # Backend
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    restart: unless-stopped
