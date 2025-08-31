@@ -1,9 +1,0 @@
-version: '3.8'
-
-services:
-  frontend:
-    build: .
-    container_name: teste-api-frontend
-    ports:
-      - "4200:4200"  # Agora ambas as portas são 4200
-    restart: unless-stopped
