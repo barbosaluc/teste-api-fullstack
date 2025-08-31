@@ -1,12 +1,21 @@
 {
   "name": "teste-api-frontend",
   "version": "0.0.0",
+ 
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:docker": "docker build -t teste-api-frontend .",
+    "start:docker": "docker run -p 4200:4200 teste-api-frontend",
+    "compose:up": "docker-compose up -d",
+    "compose:down": "docker-compose down",
+    "compose:logs": "docker-compose logs -f",
+    "local:setup": "nvm use 18.20.3 || echo 'Please install Node.js 18.20.3'",
+    "local:install": "npm install",
+    "local:dev": "npm start"
   },
   "prettier": {
     "overrides": [

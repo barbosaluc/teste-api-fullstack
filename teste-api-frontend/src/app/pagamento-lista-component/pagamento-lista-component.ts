@@ -15,6 +15,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 import { PagamentoComponent } from '../pagamento-component/pagamento-component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-pagamento-lista-component',
   imports: [

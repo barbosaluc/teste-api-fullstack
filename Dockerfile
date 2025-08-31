@@ -1,38 +1,36 @@
-# Build do Backend
+# Stage 1: Build do Backend (Spring Boot)
 FROM maven:3.9.9-eclipse-temurin-17 AS backend-build
 WORKDIR /backend
 COPY Teste-api-backend/pom.xml .
 COPY Teste-api-backend/src ./src
 RUN mvn clean package -DskipTests
 
-# Build do Frontend - USANDO NODE 20
-FROM node:20-alpine AS frontend-build
+# Stage 2: Build do Frontend (Angular)
+FROM node:20.19.0-alpine AS frontend-build
 WORKDIR /frontend
-COPY teste-api-frontend/package*.json ./
-RUN npm install
+COPY teste-api-frontend/package*.json .
+COPY teste-api-frontend/package-lock.json .
+RUN npm ci --legacy-peer-deps --no-audit --no-fund
 COPY teste-api-frontend/ .
 RUN npm run build -- --configuration production
 
-# Runtime Final - USANDO NODE 20
-FROM node:20-alpine
+# Stage 3: Runtime Final
+FROM node:20.19.0-alpine
 WORKDIR /app
 
-# Instalar Java
+# Instalar Java para Spring Boot
 RUN apk add --no-cache openjdk17-jre
 
-# Copiar Backend
+# Instalar angular-http-server (específico para Angular)
+RUN npm install -g angular-http-server
+
+# Copiar Backend (JAR)
 COPY --from=backend-build /backend/target/*.jar app.jar
 
-# Copiar Frontend
-COPY --from=frontend-build /frontend/dist/teste-api-frontend ./frontend-dist
+# Copiar Frontend (dist)
+COPY --from=frontend-build /frontend/dist/teste-api-frontend/browser ./frontend-dist
 
-# Instalar http-server
-RUN npm install -g http-server
+EXPOSE 8080 4200
 
-# Copiar script de inicialização
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
-EXPOSE 4200 8080
-
-CMD ["/start.sh"]
+# Comando para iniciar AMBAS aplicações
+CMD sh -c "java -jar app.jar & angular-http-server --path ./frontend-dist --port 4200 --enablePushState"
