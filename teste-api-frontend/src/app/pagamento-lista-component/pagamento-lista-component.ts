@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 import { PagamentoComponent } from '../pagamento-component/pagamento-component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-pagamento-lista-component',
   imports: [
@@ -27,7 +28,8 @@ import { PagamentoComponent } from '../pagamento-component/pagamento-component';
     MatIconModule,
     MatTooltipModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 ],
 
   standalone: true,
@@ -39,7 +41,8 @@ export class PagamentoListaComponent implements OnInit {
   constructor(
     private pagamentoService: PagamentoService,
     private dialog: MatDialog,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar
   ) {}
 
 
@@ -99,12 +102,12 @@ processarPagamento(identificacao: string) {
     console.log('Inativando pagamento com identificação:', id);
     this.pagamentoService.inativarPagamento(id).subscribe({
       next: () => {
-        console.log('Pagamento inativado com sucesso!');
+        this.exibirSucesso('Pagamento inativado com sucesso!'); 
         this.buscarPagamentos();
       },
       error: (error) => {
         console.error('Erro ao inativar pagamento:', error);
-        alert('Não foi possível inativar o pagamento.');
+        this.exibirErro('Não foi possível inativar o pagamento.');
       }
     });
   }
@@ -117,6 +120,20 @@ processarPagamento(identificacao: string) {
       if (result === 'success') {
         this.buscarPagamentos();
       }
+    });
+  }
+
+  exibirSucesso(mensagem: string): void {
+    this.snackBar.open(mensagem, 'Fechar', {
+      duration: 3000,
+      panelClass: ['snackbar-sucesso']
+    });
+  }
+
+  exibirErro(mensagem: string): void {
+    this.snackBar.open(mensagem, 'Fechar', {
+      duration: 5000,
+      panelClass: ['snackbar-erro']
     });
   }
 
