@@ -27,9 +27,12 @@ import { PagamentoService } from '../service/pagamento-service';
   templateUrl: './pagamento-component.html',
   styleUrl: './pagamento-component.scss'
 })
-export class PagamentoComponent  {
+export class PagamentoComponent {
+
+  isSaving = false;
 
   novoPagamento: any = {
+    idPagamento: null,
     cpfCnpj: '',
     metodoPagamento: '',
     numeroCartao: '',
@@ -39,13 +42,14 @@ export class PagamentoComponent  {
   constructor(
     public dialogRef: MatDialogRef<PagamentoComponent>,
     private pagamentoService: PagamentoService
-  ) {}
+  ) { }
 
   fecharDialog(): void {
     this.dialogRef.close();
   }
 
   criarPagamento(): void {
+    this.isSaving = true;
     console.log('Dados a serem enviados:', this.novoPagamento);
     this.pagamentoService.criarPagamento(this.novoPagamento).subscribe({
       next: (response) => {

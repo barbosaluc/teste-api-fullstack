@@ -1,50 +1,57 @@
 <div class="dialog-container">
-<div class="dialog-header">
-<h2 mat-dialog-title>Novo Pagamento</h2>
-<button mat-icon-button (click)="fecharDialog()">
-<mat-icon>close</mat-icon>
-</button>
-</div>
-
-<div class="dialog-content">
-<form (ngSubmit)="criarPagamento()">
-<div class="form-row">
-<mat-form-field appearance="outline" class="form-field">
-<mat-label>Identificação</mat-label>
-<input matInput [(ngModel)]="novoPagamento.cpfCnpj" name="identificacao">
-</mat-form-field>
-
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Método de pagamento</mat-label>
-      <mat-select [(ngModel)]="novoPagamento.metodoPagamento" name="metodoPagamento">
-        <mat-option value="PIX">PIX</mat-option>
-        <mat-option value="Cartão de Crédito">Cartão de Crédito</mat-option>
-        <mat-option value="Cartão de Débito">Cartão de Débito</mat-option>
-        <mat-option value="Boleto">Boleto</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div class="form-row">
-    <mat-form-field *ngIf="novoPagamento.metodoPagamento === 'Cartão de Crédito' || novoPagamento.metodoPagamento === 'Cartão de Débito'"
-     appearance="outline" class="w-full">
-      <mat-label>Número do Cartão</mat-label>
-      <input matInput [(ngModel)]="novoPagamento.numeroCartao" name="numeroCartao">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Valor</mat-label>
-      <input matInput type="number" [(ngModel)]="novoPagamento.valorPagamento" name="valor">
-    </mat-form-field>
-  </div>
-
-  <div class="flex-end">
-    <button mat-raised-button color="primary" type="submit">
-      <mat-icon>save</mat-icon>
-      Salvar Pagamento
+  <div class="dialog-header">
+    <h2 mat-dialog-title>Novo Pagamento</h2>
+    <button mat-icon-button (click)="fecharDialog()">
+      <mat-icon>close</mat-icon>
     </button>
   </div>
-</form>
 
-</div>
+  <div class="dialog-content">
+    <form (ngSubmit)="criarPagamento()">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>ID do Pagamento</mat-label>
+          <input matInput type="number" [(ngModel)]="novoPagamento.idPagamento" name="idPagamento">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>CPF ou CNPJ</mat-label>
+          <input matInput [(ngModel)]="novoPagamento.cpfCnpj" name="identificacao">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Método de pagamento</mat-label>
+          <mat-select [(ngModel)]="novoPagamento.metodoPagamento" name="metodoPagamento">
+            <mat-option value="PIX">PIX</mat-option>
+            <mat-option value="Cartao de Credito">Cartão de Credito</mat-option>
+            <mat-option value="Cartao de Debito">Cartao de Debito</mat-option>
+            <mat-option value="Boleto">Boleto</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field
+          *ngIf="novoPagamento.metodoPagamento === 'Cartao de credito' || novoPagamento.metodoPagamento === 'Cartao de Debito'"
+          appearance="outline" class="w-full">
+          <mat-label>Número do Cartão</mat-label>
+          <input matInput [(ngModel)]="novoPagamento.numeroCartao" name="numeroCartao">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Valor</mat-label>
+          <input matInput type="number" [(ngModel)]="novoPagamento.valorPagamento" name="valor">
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions align="end">
+          <button mat-button (click)="fecharDialog()">Cancelar</button>
+          <button mat-flat-button color="primary"
+          [disabled]="!novoPagamento.cpfCnpj || !novoPagamento.valorPagamento || !novoPagamento.metodoPagamento || isSaving">
+              <mat-icon>save</mat-icon>
+              Salvar Pagamento
+            </button>
+      </div>
+    </form>
+
+  </div>
 </div>

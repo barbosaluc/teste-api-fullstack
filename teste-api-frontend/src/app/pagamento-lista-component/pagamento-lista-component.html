@@ -6,13 +6,13 @@
   <div class="barra-filtros">
     <mat-form-field appearance="outline" class="filtro-busca">
       <mat-label>Buscar por CPF ou CNPJ</mat-label>
-      <input matInput [(ngModel)]="termoBusca" (input)="chamarFiltro()">
+       <input matInput [(ngModel)]="termoBusca" (keyup.enter)="chamarFiltro()">
 
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="filtro-status">
       <mat-label>Todos</mat-label>
-      <mat-select [(ngModel)]="statusFiltro" (valueChange)="chamarFiltro()">
+      <mat-select [(ngModel)]="statusFiltro" (selectionChange)="chamarFiltro()">
         <mat-option value="todos">Todos</mat-option>
         <mat-option value="PROCESSADO_SUCESSO">Processado com sucesso</mat-option>
         <mat-option value="PENDENTE_PROCESSAMENTO">Pendente de Processamento</mat-option>

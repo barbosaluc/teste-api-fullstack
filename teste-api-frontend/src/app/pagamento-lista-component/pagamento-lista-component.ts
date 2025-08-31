@@ -83,6 +83,7 @@ export class PagamentoListaComponent implements OnInit {
 
   chamarFiltro(): void {
     this.buscarPagamentos();
+    console.log('Valor do campo de busca:', this.termoBusca);
   }
 
 mudancaPagina(event: PageEvent) {
