@@ -40,7 +40,7 @@ export class PagamentoComponent {
     numeroCartao: '',
     valorPagamento: null,
   };
- 
+
   constructor(
     public dialogRef: MatDialogRef<PagamentoComponent>,
     private pagamentoService: PagamentoService,
@@ -66,7 +66,7 @@ export class PagamentoComponent {
     });
   }
 
-    exibirSucesso(mensagem: string): void {
+  exibirSucesso(mensagem: string): void {
     this.snackBar.open(mensagem, 'Fechar', {
       duration: 3000,
       panelClass: ['snackbar-sucesso']

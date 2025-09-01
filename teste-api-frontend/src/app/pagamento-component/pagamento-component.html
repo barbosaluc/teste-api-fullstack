@@ -1,24 +1,24 @@
-<div class="dialog-container">
-  <div class="dialog-header">
+<div class="container-dialog">
+  <div class="cabecalho-dialog">
     <h2 mat-dialog-title>Novo Pagamento</h2>
     <button mat-icon-button (click)="fecharDialog()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
 
-  <div class="dialog-content">
+  <div class="conteudo-dialog ">
     <form (ngSubmit)="criarPagamento()">
-      <div class="form-row">
-        <mat-form-field appearance="outline" class="form-field">
+      <div class="linha-formulario">
+        <mat-form-field appearance="outline" class="campo-formulario">
           <mat-label>ID do Pagamento</mat-label>
           <input matInput type="number" [(ngModel)]="novoPagamento.idPagamento" name="idPagamento">
         </mat-form-field>
-        <mat-form-field appearance="outline" class="form-field">
+        <mat-form-field appearance="outline" class="campo-formulario">
           <mat-label>CPF ou CNPJ</mat-label>
           <input matInput [(ngModel)]="novoPagamento.cpfCnpj" name="identificacao">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="form-field">
+        <mat-form-field appearance="outline" class="campo-formulario">
           <mat-label>Método de pagamento</mat-label>
           <mat-select [(ngModel)]="novoPagamento.metodoPagamento" name="metodoPagamento">
             <mat-option value="PIX">PIX</mat-option>
@@ -29,7 +29,7 @@
         </mat-form-field>
       </div>
 
-      <div class="form-row">
+      <div class="linha-formulario">
         <mat-form-field
           *ngIf="novoPagamento.metodoPagamento === 'Cartao de Credito' || novoPagamento.metodoPagamento === 'Cartao de Debito'"
           appearance="outline" class="w-full">
@@ -37,15 +37,14 @@
           <input matInput [(ngModel)]="novoPagamento.numeroCartao" name="numeroCartao">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="form-field">
+        <mat-form-field appearance="outline" class="campo-formulario1">
           <mat-label>Valor</mat-label>
           <input matInput type="number" [(ngModel)]="novoPagamento.valorPagamento" name="valor">
         </mat-form-field>
       </div>
 
-      <div mat-dialog-actions align="end">
-          <button mat-button (click)="fecharDialog()">Cancelar</button>
-          <button mat-flat-button color="primary"
+      <div mat-dialog-actions align="end" class="salvar-pagamento">
+          <button mat-flat-button class="botao-salvar-pagamento"
           [disabled]="!novoPagamento.cpfCnpj || !novoPagamento.valorPagamento || !novoPagamento.metodoPagamento || isSaving">
               <mat-icon>save</mat-icon>
               Salvar Pagamento

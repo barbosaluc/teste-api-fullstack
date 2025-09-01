@@ -78,6 +78,7 @@ export class PagamentoListaComponent implements OnInit {
       next: (data: PagamentoDTO[]) => {
         this.pagamentos = data;
         this.totalDeItens = this.pagamentos.length;
+        this.aplicarPaginacao();
         console.log('Pagamentos filtrados com sucesso:', this.pagamentos);
       },
       error: (error) => {
@@ -87,6 +88,7 @@ export class PagamentoListaComponent implements OnInit {
   }
 
   chamarFiltro(): void {
+    this.indiceDaPagina = 0;
     this.buscarPagamentos();
     console.log('Valor do campo de busca:', this.termoBusca);
   }
@@ -94,7 +96,7 @@ export class PagamentoListaComponent implements OnInit {
   mudancaPagina(event: PageEvent) {
     this.tamanhoDaPagina = event.pageSize;
     this.indiceDaPagina = event.pageIndex;
-    this.aplicarPaginacao(); // Chama a função para aplicar a paginação
+    this.aplicarPaginacao();
   }
 
   aplicarPaginacao(): void {
