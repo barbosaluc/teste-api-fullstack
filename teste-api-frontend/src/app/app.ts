@@ -3,7 +3,7 @@ import { PagamentoListaComponent } from "./pagamento-lista-component/pagamento-l
 
 @Component({
   selector: 'app-root',
-  imports: [  PagamentoListaComponent],
+  imports: [PagamentoListaComponent], // ← REMOVA RouterOutlet
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
